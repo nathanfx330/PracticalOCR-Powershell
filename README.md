@@ -60,11 +60,6 @@ This script **requires** the following external command-line tools to be install
 3.  **Run from PowerShell:**
     *   Open PowerShell.
     *   Navigate (`cd`) to the directory containing the script.
-    *   You may need to adjust your PowerShell Execution Policy to allow local scripts to run. For the current session only, you can often use:
-        ```powershell
-        Set-ExecutionPolicy Bypass -Scope Process -Force
-        ```
-        *(Use `Bypass` with caution, or try `RemoteSigned`)*.
     *   Execute the script:
         ```powershell
         .\PracticalOCR.ps1
@@ -81,10 +76,9 @@ This script **requires** the following external command-line tools to be install
 
 ## Troubleshooting
 
-*   **"File not found at specified path" / "term ... is not recognized":** Double-check the paths configured in the script match the actual installation locations *exactly*. Test paths manually in PowerShell using `& "C:\Full\Path\To\Tool.exe" --version` (or similar version flag).
-*   **Tesseract Errors about Language Data / `TESSDATA_PREFIX`:** Ensure the required `.traineddata` files are in the `tessdata` subfolder of your main Tesseract installation directory.
-*   **PDFtk Merge Errors:** Ensure `pdftk.exe` is working correctly. Try merging a few small PDFs manually using the `pdftk` command line to isolate issues.
-*   **PowerShell Execution Policy Errors:** See the `Set-ExecutionPolicy` command under "Usage".
+*   **"File not found at specified path" / "term ... is not recognized":** Double-check the paths configured in the script match the actual installation locations *exactly*. Test paths manually in PowerShell using `& "C:\Full\Path\To\Tool.exe" --version` (or similar version flag). If the script cannot run at all (`.\PracticalOCR.ps1 : The term...`), you may still need to adjust your PowerShell Execution Policy (search online for "PowerShell Set-ExecutionPolicy").
+*   **Tesseract Errors about Language Data / `TESSDATA_PREFIX`:** Ensure the required `.traineddata` files are in the `tessdata` subfolder of your main Tesseract installation directory. If errors persist, you may need to set the `TESSDATA_PREFIX` system environment variable to point to the *parent* directory of `tessdata` (e.g., `C:\Program Files\Tesseract-OCR`). Remember to restart PowerShell after setting environment variables.
+*   **PDFtk Merge Errors:** Ensure `pdftk.exe` is working correctly. Try merging a few small PDFs manually using the `pdftk` command line to isolate issues. Check the script's error output for details from `pdftk`.
 
 ## License
 
